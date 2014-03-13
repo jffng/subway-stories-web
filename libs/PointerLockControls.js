@@ -140,19 +140,19 @@ THREE.PointerLockControls = function ( camera ) {
 
 	// }();
 
-	this.update = function ( delta ) {
+	this.update = function ( ) {
 
 		if ( scope.enabled === false ) return;
 
-		delta *= 0.1;
+		var delta = 0.1*(Date.now() - time);
 
 		// velocity.x += ( - velocity.x ) * 0.08 * delta;
 		// velocity.z += ( - velocity.z ) * 0.08 * delta;
 
 		// velocity.y -= 0.25 * delta;
 
-		if ( moveForward ) acceleration.z -= 0.08 * delta;
-		if ( moveBackward ) acceleration.z += 0.08 * delta;
+		if ( moveForward ) velocity.z -= 0.15 * delta;
+		if ( moveBackward ) velocity.z += 0.15 * delta;
 
 		if ( moveLeft ) acceleration.x -= 0.08 * delta;
 		if ( moveRight ) acceleration.x += 0.08 * delta;
@@ -163,9 +163,9 @@ THREE.PointerLockControls = function ( camera ) {
 
 		// }
 
-		velocity.z += acceleration.z;
+		// velocity.z += acceleration.z;
 		velocity.x += acceleration.x;
-		acceleration.z *= 0;
+		// acceleration.z *= 0;
 		acceleration.x *= 0;
 
 		if (velocity.z == 0);
@@ -181,7 +181,7 @@ THREE.PointerLockControls = function ( camera ) {
 		camera.position.z += velocity.z;
 		if(camera.position.x > 0) { camera.position.x = Math.min(camera.position.x, 3000);  }
 		if(camera.position.x < 0) { camera.position.x = Math.max(camera.position.x, -3000); } 
-		camera.position.z = Math.min(Math.max(camera.position.z, 200), 3000);
+		camera.position.z = Math.min(Math.max(camera.position.z, 200), 2200);
 
 		velocity.x *= .99;
 		velocity.z *= .99;
@@ -197,6 +197,8 @@ THREE.PointerLockControls = function ( camera ) {
 		// 	canJump = true;
 
 		// }
+
+		// updateAudio();
 
 	};
 
