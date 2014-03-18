@@ -1,7 +1,8 @@
 var context = null;
 var gainNode = [];
+var audioFlag;
 
-initAudio = function (argument) {
+initAudio = function () {
   console.log('init');
   window.AudioContext = window.AudioContext||window.webkitAudioContext;
   context = new AudioContext();
@@ -9,10 +10,30 @@ initAudio = function (argument) {
   bufferLoader = new BufferLoader(
     context,
     [
-    'sounds/subway_sound.mp3',
-    'sounds/fried_chicken_final.mp3',
-    'sounds/david_news.mp3',
-    'sounds/sotired.mp3',
+    'sounds/1.mp3',
+    'sounds/2.mp3',
+    'sounds/3.mp3',
+    'sounds/4.mp3',
+    'sounds/5.mp3',
+    'sounds/6.mp3',
+    'sounds/7.mp3',
+    'sounds/8.mp3',
+    'sounds/9.mp3',
+    'sounds/10.mp3',
+    'sounds/11.mp3',
+    'sounds/12.mp3',
+    'sounds/13.mp3',
+    'sounds/14.mp3',
+    'sounds/15.mp3',
+    'sounds/16.mp3',
+    'sounds/17.mp3',
+    'sounds/18.mp3',
+    'sounds/19.mp3',
+    'sounds/20.mp3',
+    'sounds/21.mp3',
+    'sounds/22.mp3',
+    'sounds/23.mp3',
+    'sounds/subway_sound.mp3'
     ],
     finishedLoading
     );
@@ -22,32 +43,34 @@ initAudio = function (argument) {
 
 finishedLoading = function (bufferList) {
   console.log('finishedLoading');
+  audioFlag = true;
   var sources = [];
 
-  for(var i = 0; i < 4; i++){
+  for(var i = 0; i < 24; i++){
     sources[i] = context.createBufferSource();
     sources[i].buffer = bufferList[i];
     sources[i].start(0);
     sources[i].loop = true;
     gainNode[i] = context.createGain();        
     sources[i].connect(gainNode[i]);
+    gainNode[i].gain.value = 0;
     gainNode[i].connect(context.destination);
   };
 }
 
 updateAudio = function() {
-    // var subwayGain = Math.max((200 + camera.position.z) / 2200, .2);
-    // gainNode[0].gain.value = subwayGain;
-    // gainNode[1].gain.value = 1 - subwayGain; 
+    this.subwayGain = Math.max((150 + camera.position.z) / 2200, .3);
+    gainNode[23].gain.value = this.subwayGain;
 
-    var pos = ( ( camera.position.x + 1000 ) / 2000 ) * 4;
-    for(var i = 0; i < 4; i++){
+    var pos = ( ( camera.position.x + 1300 ) / 2600 ) * 24;
+    for(var i = 0; i < 23; i++){
       if(i - pos >= 0 && i - pos < 1){
         var x = i - pos;
         if (i>0){gainNode[i-1].gain.value = (1 - x);}
         gainNode[i].gain.value = x;
         gainNode[i+1].gain.value = (1-x);
       }
+      else{ gainNode[i].gain.value *= 0.05; }
     }
   }
 
@@ -86,6 +109,7 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
         console.error('decodeAudioData error', error);
       }
       );
+      console.log(index);
   }
 
   request.onerror = function() {

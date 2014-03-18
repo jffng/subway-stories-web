@@ -52,7 +52,8 @@ THREE.PointerLockControls = function ( camera ) {
 
 			case 37: // left
 			case 65: // a
-				moveLeft = true; break;
+				moveLeft = true; 
+				break;
 
 			case 40: // down
 			case 83: // s
@@ -124,10 +125,10 @@ THREE.PointerLockControls = function ( camera ) {
 
 		// velocity.y -= 0.25 * delta;
 
-		if ( moveForward ) velocity.z -= 0.1 * delta;
-		if ( moveBackward ) velocity.z += 0.1 * delta;
+		if ( moveForward ) velocity.z -= 0.15 * delta;
+		if ( moveBackward ) velocity.z += 0.15 * delta;
 
-		if ( moveLeft ) acceleration.x -= 0.01 * delta;
+		if ( moveLeft )  acceleration.x -= 0.01 * delta; 
 		if ( moveRight ) acceleration.x += 0.01 * delta;
 
 		velocity.x += acceleration.x;
@@ -138,18 +139,19 @@ THREE.PointerLockControls = function ( camera ) {
 		else if (velocity.z > 0) velocity.z = Math.max(-10, velocity.z ); 
 
 		if (velocity.x == 0);
-		else if (velocity.x < 0) velocity.x = Math.min(6, velocity.x ); 
-		else if (velocity.x > 0) velocity.x = Math.max(-6, velocity.x ); 
+		else if (velocity.x < 0) velocity.x = Math.min(8, velocity.x ); 
+		else if (velocity.x > 0) velocity.x = Math.max(-8, velocity.x ); 
 
 
 		camera.position.x += velocity.x;
-		camera.position.z += lastV.z + .0000001*(velocity.z - lastV.z);
+		camera.position.z += velocity.z;
 		if(camera.position.x > 0) { camera.position.x = Math.min(camera.position.x, 1750);  }
-		if(camera.position.x < 0) { camera.position.x = Math.max(camera.position.x, -1250); } 
-		camera.position.z = Math.min(Math.max(camera.position.z, 200), 2200);
+		if(camera.position.x < 0) { camera.position.x = Math.max(camera.position.x, -1750); } 
+		camera.position.z = Math.min(Math.max(camera.position.z, 150), 2200);
+		// console.log(camera.position.x);
 
-		lastV.z = velocity.z;
-		lastV.x = velocity.x;
+		// lastV.z = velocity.z;
+		// lastV.x = velocity.x;
 		velocity.x *= .99;
 		velocity.z *= .9;
 	};
