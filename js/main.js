@@ -1,14 +1,14 @@
 $(document).ready(function() {
   console.log("ready!");
   init();
-  initAudio();
-  // animate();
+  // initAudio();
+  animate();
 });
 
 var loadTimeValue;
 var camera, scene, renderer, audio;
 var subwayCar, passengers, background, poles, polesB;
-var controls, time = Date.now();
+var controls, noise, time = Date.now();
 var mouseX = 0, mouseY = 0,
 windowHalfX = window.innerWidth / 2,
 windowHalfY = window.innerHeight / 2;
@@ -160,35 +160,35 @@ passengerLoader = function (numPassengers) {
 
       case 17:  
         this.passengerMesh = new THREE.Mesh( new THREE.PlaneGeometry(112,150), img );
-        this.passengerMesh.position.set(numPassengers*110 - 1380, -40, -50);
+        this.passengerMesh.position.set(numPassengers*110 - 1430, -40, -50);
         scene.add(this.passengerMesh);
         console.log("passenger: "+numPassengers);
         break;
 
       case 21:  
         this.passengerMesh = new THREE.Mesh( new THREE.PlaneGeometry(112,150), img );
-        this.passengerMesh.position.set(numPassengers*110 - 1360, -40, -50);
+        this.passengerMesh.position.set(numPassengers*110 - 1430, -40, -50);
         scene.add(this.passengerMesh);
         console.log("passenger: "+numPassengers);
         break;
       
       case 22:  
         this.passengerMesh = new THREE.Mesh( new THREE.PlaneGeometry(112,150), img );
-        this.passengerMesh.position.set(numPassengers*110 - 1310, -40, -50);
+        this.passengerMesh.position.set(numPassengers*110 - 1440, -40, -50);
         scene.add(this.passengerMesh);
         console.log("passenger: "+numPassengers);
         break;
       
       case 23:  
         this.passengerMesh = new THREE.Mesh( new THREE.PlaneGeometry(112,150), img );
-        this.passengerMesh.position.set(numPassengers*110 - 1350, -40, -50);
+        this.passengerMesh.position.set(numPassengers*110 - 1480, -40, -50);
         scene.add(this.passengerMesh);
         console.log("passenger: "+numPassengers);
         break;
 
       case 24:  
         this.passengerMesh = new THREE.Mesh( new THREE.PlaneGeometry(112,150), img );
-        this.passengerMesh.position.set(numPassengers*110 - 1320, -50, -50);
+        this.passengerMesh.position.set(numPassengers*110 - 1440, -50, -50);
         scene.add(this.passengerMesh);
         console.log("passenger: "+numPassengers);
         break; 
@@ -199,13 +199,15 @@ passengerLoader = function (numPassengers) {
         scene.add(this.passengerMesh);  
         console.log("passenger: "+numPassengers);
         break;
-      }      
+      }
+
+      return this.passengerMesh;      
 }
 
-// passengerLoader.prototype.setPos = function (timer) {
-//   var noise = (.5-Math.random())*.1*(Date.now() - timer);
-//   this.passengerMesh.position.y += noise;
-// }
+passengerLoader.prototype.setPos = function () {
+  this.passengerMesh.position.y += noise;
+  this.passengerMesh.position.y = Math.min(Math.max(-45,this.passengerMesh.position.y),-35); 
+}
 
   function Background(num){
     // var img;

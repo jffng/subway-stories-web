@@ -32,7 +32,6 @@ initAudio = function () {
     'sounds/20.mp3',
     'sounds/21.mp3',
     'sounds/22.mp3',
-    'sounds/23.mp3',
     'sounds/subway_sound.mp3'
     ],
     finishedLoading
@@ -46,7 +45,7 @@ finishedLoading = function (bufferList) {
   audioFlag = true;
   var sources = [];
 
-  for(var i = 0; i < 24; i++){
+  for(var i = 0; i < 23; i++){
     sources[i] = context.createBufferSource();
     sources[i].buffer = bufferList[i];
     sources[i].start(0);
@@ -59,16 +58,18 @@ finishedLoading = function (bufferList) {
 }
 
 updateAudio = function() {
-    this.subwayGain = Math.max((150 + camera.position.z) / 2200, .3);
-    gainNode[23].gain.value = this.subwayGain;
+    this.subwayGain = Math.max((150 + camera.position.z) / 2200, .2);
+    gainNode[22].gain.value = this.subwayGain;
 
     var pos = ( ( camera.position.x + 1300 ) / 2600 ) * 24;
-    for(var i = 0; i < 23; i++){
+    for(var i = 0; i < 22; i++){
       if(i - pos >= 0 && i - pos < 1){
         var x = i - pos;
-        if (i>0){gainNode[i-1].gain.value = (1 - x);}
-        gainNode[i].gain.value = x;
-        gainNode[i+1].gain.value = (1-x);
+        if (i>0){gainNode[i-1].gain.value = Math.cos((1 - x)*0.5*Math.PI) - this.subwayGain;}
+        if (i>1){gainNode[i-2].gain.value = .2*Math.cos((1 - x)*0.5*Math.PI) - this.subwayGain;}
+        gainNode[i].gain.value = Math.cos(x*0.5*Math.PI)- this.subwayGain;
+        if (i!=21) gainNode[i+1].gain.value = Math.cos((1 - x)*0.5*Math.PI)- this.subwayGain;
+        if (i!=20 && i!= 21){gainNode[i+2].gain.value = .2*Math.cos((1 - x)*0.5*Math.PI) - this.subwayGain;}
       }
       else{ gainNode[i].gain.value *= 0.05; }
     }
