@@ -1,7 +1,7 @@
 $(document).ready(function() {
   console.log("ready!");
   init();
-  // initAudio();
+  initAudio();
   animate();
 });
 
