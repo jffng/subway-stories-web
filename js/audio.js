@@ -3,8 +3,9 @@ var gainNode = [];
 var audioFlag;
 
 initAudio = function () {
-  console.log('init');
-  window.AudioContext = window.AudioContext||window.webkitAudioContext;
+  console.log('initAudio');
+  window.AudioContext;
+  //||window.webkitAudioContext
   context = new AudioContext();
 
   bufferLoader = new BufferLoader(
@@ -36,8 +37,8 @@ initAudio = function () {
     ],
     finishedLoading
     );
-
-  bufferLoader.load();
+    
+    bufferLoader.load();    
 } 
 
 finishedLoading = function (bufferList) {
@@ -61,6 +62,7 @@ updateAudio = function() {
     this.subwayGain = Math.max((150 + camera.position.z) / 2200, .2);
     gainNode[22].gain.value = this.subwayGain;
 
+    //linearly interpolate between passenger story audio
     var pos = ( ( camera.position.x + 1300 ) / 2600 ) * 24;
     for(var i = 0; i < 22; i++){
       if(i - pos >= 0 && i - pos < 1){
@@ -109,8 +111,7 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
       function(error) {
         console.error('decodeAudioData error', error);
       }
-      );
-      console.log(index);
+    );
   }
 
   request.onerror = function() {
@@ -121,6 +122,10 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
 }
 
 BufferLoader.prototype.load = function() {
-  for (var i = 0; i < this.urlList.length; ++i)
-    this.loadBuffer(this.urlList[i], i);
+  // var self = this;
+  for (var i = 0; i < this.urlList.length; ++i){
+    // Pace.track(function() {
+      this.loadBuffer(this.urlList[i], i);
+    // });
+  }
 }
