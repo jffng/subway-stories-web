@@ -1,11 +1,15 @@
 $(document).ready(function() {
-  console.log("ready!");
-  init();
-  initAudio();
-  animate();
+  $('body').append('<div id="instructions"><span style="font-size:32px"> Subway Stories </span><br><br>An interactive storytelling experience<br><br>Click anywhere on the screen to start<br><br>Use arrow or w,a,s,d keys to explore<br><br>By <a href="http://animishmish.com" target="_blank">Alon Chitayat</a> & <a href="http://jffng.com" target="_blank">Jeff Ong</a>.<br><br></div>');
+  $('#instructions').click( function() {
+    instructions();
+  });
+
+    init();
+    initAudio();
+    animate();
 });
 
-var loadTimeValue;
+var graphicsFlag;
 var camera, scene, renderer, audio;
 var subwayCar, passengers, background, poles, polesB;
 var controls, noise, time = Date.now();
@@ -14,10 +18,9 @@ windowHalfX = window.innerWidth / 2,
 windowHalfY = window.innerHeight / 2;
 
 function init() {
-	$('body').append('<div id="container"></div>');
-	$('#container').append('<div id="info"></div>');
-	$('#info').addClass('info');
-	$('#info').html("Subway Stories: <br> An Interactive Storytelling Platform");
+  $('body').append('<div id="container"></div>');
+  $('#container').append('<div id="info"></div>');
+  $('#info').addClass('info');
   passengers_loaded = false;
   poles_loaded = false;
 
@@ -238,24 +241,30 @@ passengerLoader = function (numPassengers) {
     renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
+  function instructions() {
+    document.getElementById('instructions').style.display = 'none';
+  }
+
   function render () {
-    controls.update();
+    // if(graphicsFlag == true){
+      controls.update();
 
-    for(var i = 0; i < poles.length; i++){ 
-      poles[i].setPos(time, 1.2);
-      polesB[i].setPos(time, .9);
-    }
+      for(var i = 0; i < poles.length; i++){ 
+        poles[i].setPos(time, 1.2);
+        polesB[i].setPos(time, .9);
+      }
 
-    for(var i = 0; i < background.length; i++){
-      background[i].setPos(time);
-    }
+      for(var i = 0; i < background.length; i++){
+        background[i].setPos(time);
+      }
 
-    passengers.setPos(time);
-    subwayCar.setPos(time);
-    if(audioFlag == true ) updateAudio();
+      passengers.setPos(time);
+      subwayCar.setPos(time);
+      if(audioLoaded == true ) updateAudio();
 
-    renderer.render(scene,camera);
-    time = Date.now();
+      renderer.render(scene,camera);
+      time = Date.now();
+    // }
 }
 
 function animate () {

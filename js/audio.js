@@ -1,13 +1,11 @@
 var context = null;
 var gainNode = [];
-var audioFlag;
+var audioLoaded;
 
 initAudio = function () {
   console.log('initAudio');
-  window.AudioContext;
-  //||window.webkitAudioContext
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
   context = new AudioContext();
-
   bufferLoader = new BufferLoader(
     context,
     [
@@ -43,7 +41,7 @@ initAudio = function () {
 
 finishedLoading = function (bufferList) {
   console.log('finishedLoading');
-  audioFlag = true;
+  audioLoaded = true;
   var sources = [];
 
   for(var i = 0; i < 23; i++){
@@ -97,6 +95,7 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
 
   request.onload = function() {
     // Asynchronously decode the audio file data in request.response
+    
     loader.context.decodeAudioData(
       request.response,
       function(buffer) {
@@ -110,9 +109,8 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
       },
       function(error) {
         console.error('decodeAudioData error', error);
-      }
-    );
-  }
+      });
+    };
 
   request.onerror = function() {
     alert('BufferLoader: XHR error');
@@ -122,10 +120,8 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
 }
 
 BufferLoader.prototype.load = function() {
-  // var self = this;
+  var self = this;
   for (var i = 0; i < this.urlList.length; ++i){
-    // Pace.track(function() {
-      this.loadBuffer(this.urlList[i], i);
-    // });
+      self.loadBuffer(self.urlList[i], i);
   }
 }

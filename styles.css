@@ -4,7 +4,13 @@ body {
 	background-color: #000000;
 	margin: 0px;
 	overflow: hidden;
+	font-size:14px;
 }
+
+a:link {color:#ffffff;font-style:italic;text-decoration:none;}      /* unvisited link */
+a:visited {color:#ffffff;font-style:italic;text-decoration:none;}  /* visited link */
+a:hover {color:#ffa500;font-style:italic;text-decoration:none;}  /* mouse over link */
+a:active {color:#ffa500;font-style:italic;text-decoration:none;}  /* selected link */
 
 .info{
 	position: absolute;
@@ -14,20 +20,89 @@ body {
 	text-align: left;
 }
 
-.pace .pace-progress {
-  background: #29d;
-  position: fixed;
+#instructions {
+
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+
+	background-color: rgba(0,0,0,0.7);
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	box-orient: horizontal;
+
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	box-pack: center;
+
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	box-align: center;
+
+	color: #ffffff;
+	text-align: center;
+
+	cursor: pointer;
+
+}
+		
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
   z-index: 2000;
+  position: fixed;
+  margin: auto;
   top: 0;
   left: 0;
-  height: 2px;
-
-  -webkit-transition: width 1s;
-  -moz-transition: width 1s;
-  -o-transition: width 1s;
-  transition: width 1s;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #000000;
 }
 
-.pace-inactive {
+.pace .pace-progress {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-transition: width 1s ease-in-out 1s linear;
+  -moz-transition: width 1s ease-in-out 1s linear;
+  -ms-transition: width 1s ease-in-out 1s linear;
+  -o-transition: width 1s ease-in-out 1s linear;
+  transition: width 1s ease-in-out 1s linear;
+
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  max-width: 200px;
+  position: fixed;
+  z-index: 2000;
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  background: #000000;
+}
+
+.pace.pace-inactive {
   display: none;
 }
