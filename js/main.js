@@ -1,12 +1,26 @@
 $(document).ready(function() {
   $('body').append('<div id="instructions"><span style="font-size:32px"> Subway Stories </span><br><br>An interactive storytelling experience<br><br>Click anywhere on the screen to start<br><br>Use arrow or w,a,s,d keys to explore<br><br>By <a href="http://animishmish.com" target="_blank">Alon Chitayat</a> & <a href="http://jffng.com" target="_blank">Jeff Ong</a>.<br><br></div>');
-  $('#instructions').click( function() {
-    instructions();
+  // $('body').append('<div id="audio-on-off"></div>');
+  
+  $('#instructions').click(function() {
+    $('#instructions').fadeOut('slow');
   });
+  
+  // $('#audio-on-off').click(function () {
+  //   $('audio-on-off').addClass('audioOff');
+  //   // var clicks = $('this').data('clicks', true);
+  //   //   if(clicks){
+  //   //     $('#audio-on-off').addClass('audioOn');
+  //   //   }
+  //   //   else{
+  //   //     $('#audio-on-off').addClass('audioOff');
+  //   //   }
+  //   console.log('click');
+  // });
 
-    init();
-    initAudio();
-    animate();
+  init();    
+  initAudio();
+  animate();
 });
 
 var graphicsFlag;
@@ -64,7 +78,7 @@ function addGraphics () {
 
     scene.add(passengers.object3D);
 
-    for (var i = 0; i < 8; i++){
+    for (var i = 0; i < 11; i++){
       poles[i] = new Pole(i*750-1000, 120, 150, 700, 0x333333);
       polesB[i] = new Pole(i*750-1500, 160, -100, 750, 0x121212);
     }
@@ -231,7 +245,7 @@ passengerLoader = function (numPassengers) {
   Pole.prototype.setPos = function(timer, speed) {
     var delta = (Date.now() - timer);
     this.cube.position.x -= delta*speed;
-    if(this.cube.position.x < -3000) this.cube.position.x += 6000;
+    if(this.cube.position.x < -4000) this.cube.position.x += 8250;
   }
 
   function onWindowResize() {
@@ -239,10 +253,6 @@ passengerLoader = function (numPassengers) {
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
-  }
-
-  function instructions() {
-    document.getElementById('instructions').style.display = 'none';
   }
 
   function render () {
@@ -260,7 +270,7 @@ passengerLoader = function (numPassengers) {
 
       passengers.setPos(time);
       subwayCar.setPos(time);
-      if(audioLoaded == true ) updateAudio();
+      if(audioLoaded == true) updateAudio();
 
       renderer.render(scene,camera);
       time = Date.now();
