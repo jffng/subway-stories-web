@@ -7,132 +7,50 @@ body {
 	font-size:14px;
 }
 
-#audio-on-off{
-  position: absolute;
-
-  margin-top: 5px;
-  margin-left: 5px;
-  width:40px;
-  height:40px;
-  cursor: pointer;
-  background-color: rgba(255,255,255,.5);
-}
-
-#audioOn{
-  position: absolute;
-  margin-top: 5px;
-  margin-left: 5px;
-  width:40px;
-  height:40px;
-  cursor: pointer;
-  background-image: 'img/audioon.png';
-}
-
-#audioOff{
-  position: absolute;
-  margin-top: 5px;
-  margin-left: 5px;
-  width:40px;
-  height:40px;
-  cursor: pointer;
-  background-image: 'img/audiomuted.png';
-}
-
 a:link {color:#ffffff;font-style:italic;text-decoration:none;}      /* unvisited link */
 a:visited {color:#ffffff;font-style:italic;text-decoration:none;}  /* visited link */
 a:hover {color:#ffa500;font-style:italic;text-decoration:none;}  /* mouse over link */
 a:active {color:#ffa500;font-style:italic;text-decoration:none;}  /* selected link */
 
-.info{
-	position: absolute;
-	margin-top: 10px;
-	margin-left: 10px;
-	width: 100%;
-	text-align: left;
+.modal {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 0, 0, 0, .8 ) 
+                url('img/loader.gif') 
+                50% 50% 
+                no-repeat;
+
+  text-align: center;
 }
 
-#instructions {
-
-	position: absolute;
-
-	width: 100%;
-	height: 100%;
-
-	background-color: rgba(0,0,0,0.7);
-
-	display: -webkit-box;
-	display: -moz-box;
-	display: box;
-
-	-webkit-box-orient: horizontal;
-	-moz-box-orient: horizontal;
-	box-orient: horizontal;
-
-	-webkit-box-pack: center;
-	-moz-box-pack: center;
-	box-pack: center;
-
-	-webkit-box-align: center;
-	-moz-box-align: center;
-	box-align: center;
-
-	color: #ffffff;
-	text-align: center;
-
-	cursor: pointer;
-}
-		
-
-.pace {
-  -webkit-pointer-events: none;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-
-  z-index: 2000;
-  position: fixed;
-  margin: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 5px;
-  width: 200px;
-  background: #fff;
-  border: 1px solid #000000;
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
 }
 
-.pace .pace-progress {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-
-  -webkit-transition: width 1s ease-in-out 1s linear;
-  -moz-transition: width 1s ease-in-out 1s linear;
-  -ms-transition: width 1s ease-in-out 1s linear;
-  -o-transition: width 1s ease-in-out 1s linear;
-  transition: width 1s ease-in-out 1s linear;
-
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-
-  max-width: 200px;
-  position: fixed;
-  z-index: 2000;
-  display: block;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  background: #000000;
-}
-
-.pace.pace-inactive {
-  display: none;
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
 }

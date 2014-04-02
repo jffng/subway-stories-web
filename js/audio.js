@@ -4,6 +4,7 @@ var audioLoaded;
 
 initAudio = function () {
   console.log('initAudio');
+  audioLoaded = false;
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   context = new AudioContext();
   bufferLoader = new BufferLoader(
@@ -40,8 +41,9 @@ initAudio = function () {
 } 
 
 finishedLoading = function (bufferList) {
-  console.log('finishedLoading');
+  $('#loader').fadeOut("slow");
   audioLoaded = true;
+
   var sources = [];
 
   for(var i = 0; i < 23; i++){
@@ -93,7 +95,7 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
 
   var loader = this;
 
-  request.onload = function() {
+  request.onload = function(){
     // Asynchronously decode the audio file data in request.response
     loader.context.decodeAudioData(
       request.response,
@@ -109,7 +111,7 @@ BufferLoader.prototype.loadBuffer = function(url, index) {
       function(error) {
         console.error('decodeAudioData error', error);
       });
-    };
+  };
 
   request.onerror = function() {
     alert('BufferLoader: XHR error');

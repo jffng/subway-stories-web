@@ -1,42 +1,18 @@
 $(document).ready(function() {
-  $('body').append('<div id="instructions"><span style="font-size:32px"> Subway Stories </span><br><br>An interactive storytelling experience<br><br>Click anywhere on the screen to start<br><br>Use arrow or w,a,s,d keys to explore<br><br>By <a href="http://animishmish.com" target="_blank">Alon Chitayat</a> & <a href="http://jffng.com" target="_blank">Jeff Ong</a>.<br><br></div>');
-  // $('body').append('<div id="audio-on-off"></div>');
-  
-  $('#instructions').click(function() {
-    $('#instructions').fadeOut('slow');
-  });
-  
-  // $('#audio-on-off').click(function () {
-  //   $('audio-on-off').addClass('audioOff');
-  //   // var clicks = $('this').data('clicks', true);
-  //   //   if(clicks){
-  //   //     $('#audio-on-off').addClass('audioOn');
-  //   //   }
-  //   //   else{
-  //   //     $('#audio-on-off').addClass('audioOff');
-  //   //   }
-  //   console.log('click');
-  // });
-
+  $('body').addClass("loading");
   init();    
   initAudio();
   animate();
 });
 
-var graphicsFlag;
 var camera, scene, renderer, audio;
 var subwayCar, passengers, background, poles, polesB;
 var controls, noise, time = Date.now();
-var mouseX = 0, mouseY = 0,
-windowHalfX = window.innerWidth / 2,
-windowHalfY = window.innerHeight / 2;
 
 function init() {
   $('body').append('<div id="container"></div>');
   $('#container').append('<div id="info"></div>');
   $('#info').addClass('info');
-  passengers_loaded = false;
-  poles_loaded = false;
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
@@ -256,7 +232,6 @@ passengerLoader = function (numPassengers) {
   }
 
   function render () {
-    // if(graphicsFlag == true){
       controls.update();
 
       for(var i = 0; i < poles.length; i++){ 
@@ -274,7 +249,6 @@ passengerLoader = function (numPassengers) {
 
       renderer.render(scene,camera);
       time = Date.now();
-    // }
 }
 
 function animate () {
