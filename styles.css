@@ -12,6 +12,18 @@ a:visited {color:#ffffff;font-style:italic;text-decoration:none;}  /* visited li
 a:hover {color:#ffa500;font-style:italic;text-decoration:none;}  /* mouse over link */
 a:active {color:#ffa500;font-style:italic;text-decoration:none;}  /* selected link */
 
+#nav{
+  font-size: 22px;
+  position: absolute;
+  margin: 10px;
+}
+
+#instructionsToggle:hover {
+  color:#ffa500;
+  text-decoration:none; 
+  cursor: pointer;
+}  /* mouse over link */
+
 .modal {
   display: -webkit-box;
   display: -moz-box;
