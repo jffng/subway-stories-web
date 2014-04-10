@@ -1,3 +1,0 @@
-$( "#progressbar" ).progressbar({
-  value: false
-});

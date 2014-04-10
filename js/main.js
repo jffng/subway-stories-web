@@ -1,12 +1,12 @@
 $(document).ready(function() {
-  // $('body').addClass("loading");
+  $('body').addClass("loading");
   $('#instructionsToggle').click(function() {
     $('#instructions').toggle("slow", function(){
       // body
     });
   });
   init();    
-  // initAudio();
+  initAudio();
   animate();
 });
 
