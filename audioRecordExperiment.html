@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+	<script src="//www.WebRTC-Experiment.com/RecordRTC.js"></script>	
+</head>
+
+<body>
+	<script type="text/javascript">
+		navigator.getUserMedia({audio: true}, function(mediaStream) {
+			window.recordRTC = RecordRTC(MediaStream);
+			recordRTC.startRecording();
+		});
+
+		btnStopRecording.onclick = function() {
+			recordRTC.stopRecording(function(audioURL) {
+			window.open(audioURL);
+			});
+		};
+
+		var recordRTC = RecordRTC(mediaStream);
+		recordRTC.startRecording();
+		recordRTC.stopRecording(function(audioURL) {
+			mediaElement.src = audioURL;
+		});
+	</script>	
+</body>
