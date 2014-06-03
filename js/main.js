@@ -1,9 +1,7 @@
 $(document).ready(function() {
   $('body').addClass("loading");
   $('#instructionsToggle').click(function() {
-    $('#instructions').toggle("slow", function(){
-      // body
-    });
+    $('#instructions').toggle("slow", function(){});
   });
   init();    
   initAudio();
@@ -84,7 +82,7 @@ function addGraphics () {
     window.addEventListener( 'resize', onWindowResize, false );
 
     controls = new THREE.PointerLockControls( camera );
-    scene.add( controls.getObject() );
+    // scene.add( controls.getObject() );
   }
 
 subwayCarLoader = function () {
