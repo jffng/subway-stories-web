@@ -58,7 +58,7 @@ a:active {color:#ffa500;font-style:italic;text-decoration:none;}  /* selected li
                 50% 50% 
                 no-repeat;
 
-  text-align: center;
+    text-align: center;
 }
 
 /* When the body has the loading class, we turn
