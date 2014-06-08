@@ -1,6 +1,7 @@
 var context = null;
 var gainNode = [];
 var audioLoaded;
+var audioOn = false;
 
 initAudio = function () {
   console.log('initAudio');

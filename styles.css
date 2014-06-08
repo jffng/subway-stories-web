@@ -1,20 +1,24 @@
+@font-face {
+    font-family: 'Blanch'; /*a name to be used later*/
+    src: url('BLANCH_CONDENSED.otf'); /*URL to font*/
+}
+
 body {
-	font-family: Monospace;
+	font-family: 'Blanch';
 	color: #f0f0f0;
 	background-color: #000000;
 	margin: 0px;
 	overflow: hidden;
-	font-size:14px;
+	font-size: 28px;
 }
 
-a:link {color:#ffffff;font-style:italic;text-decoration:none;}      /* unvisited link */
-a:visited {color:#ffffff;font-style:italic;text-decoration:none;}  /* visited link */
-a:hover {color:#ffa500;font-style:italic;text-decoration:none;}  /* mouse over link */
-a:active {color:#ffa500;font-style:italic;text-decoration:none;}  /* selected link */
+a:link {color:#ffffff;text-decoration:none;}      /* unvisited link */
+a:visited {color:#ffffff;text-decoration:none;}  /* visited link */
+a:hover {color:#ffa500;text-decoration:none;}  /* mouse over link */
+a:active {color:#ffa500;text-decoration:none;}  /* selected link */
 
 #nav{
-  display: block;
-  font-size: 14px;
+  display: inline-block;
   position: absolute;
   margin: 10px;
   text-shadow: 2px 2px #000000;
@@ -54,7 +58,6 @@ a:active {color:#ffa500;font-style:italic;text-decoration:none;}  /* selected li
     height:     100%;
     width:      100%;
     background: rgba( 0, 0, 0, .8 ) 
-                url('img/loader.gif') 
                 50% 50% 
                 no-repeat;
 
